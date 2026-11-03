@@ -287,7 +287,7 @@ HTML 体量：平均 32.8KB，最大 55KB（`/fr/`）；`_astro/` 资源 13 个�
 
 > 项目自有门禁不断言 title 长度与唯一性（`scripts/` 全目录 grep `search-metadata|searchTitle|<title` 零命中），所以改 title 不会碰门禁；OG:title / twitter:title / JSON-LD `WebPage.name` 会跟着 base title 变，属预期。
 
-### 9. 本轮实际改动文件清单（`git status`，未提交）
+### 9. 本轮实际改动文件清单（`git status` 快照，写就当时未提交；提交结果见第 11 节）
 
 ```
  M README.md                                    域名默认值 + _redirects 部署说明
@@ -310,3 +310,24 @@ HTML 体量：平均 32.8KB，最大 55KB（`/fr/`）；`_astro/` 资源 13 个�
 ### 10. 部署前置条件（尚无法本地验证）
 
 `_redirects` 里的裸域→www 301 需要：① 先把 `ivfsaipan.com`（apex）挂到同一 Cloudflare Pages 项目并解析 DNS；② `www.ivfsaipan.com` 必须设为**主主机名**，否则会产生多一跳重定向。部署后可用 `technology-seo-check` / `performance-check` skill 做线上复测（www 解析、裸域 301、308 链路、CrUX、IndexNow）。
+
+### 11. 部署与线上复验记录（2026-11-03）
+
+前置条件已全部满足，本节替代上面「尚无法本地验证」的悬空状态。
+
+**通道与账号**：Cloudflare Pages **Direct Upload**（`jiusongok` 账号），构建由 GitHub Actions 负责。`package.json` 的 `build` 改为 `npx astro build`（CI 环境裸 `astro` 会 `not found`）。仓库新增 `.github/workflows/deploy.yml`（push main + workflow_dispatch → `npm ci && npm run build` → `cloudflare/wrangler-action@v3` `pages deploy dist --project-name=saipanivf --branch=main`），Actions Secrets 写入 `CF_API_TOKEN` / `CF_ACCOUNT_ID`（公钥 + SealedBox 加密，`total_count=2` 校验通过）。
+
+**项目与域名**：`saipanivf.pages.dev` 这个名字已被第三个账号下的旧项目占用，新项目 subdomain 为 **`saipanivf-9ej.pages.dev`**。CF zone `ivfsaipan.com` = `4a51733efa5e1d8e485872f0b17150f0`；NS 由 Spaceship（`launch1/launch2.spaceship.net`，`provider=basic`）经 API 改为 `provider=custom` + `kayden/tina.ns.cloudflare.com`，切 NS 前用 `nslookup` 向权威 NS 取现有解析存档（Spaceship 无 records 读取端点）；zone 约 40 秒转 `active`。绑定 `www.ivfsaipan.com`（现 `status=active`）；裸域不绑 Pages，改用 apex proxied A `192.0.2.1` + `http_request_dynamic_redirect` 规则集 `3bda3bc6c57348d8aca43f52a67041eb` 做 301 → www。注意 Pages **没有**自动创建 `www` CNAME，需手工补 `CNAME www → saipanivf-9ej.pages.dev`。
+
+**提交与流水线**：
+- `d110c41`「SEO fixes from 2026-11-02 technical audit + Cloudflare Pages deploy workflow」→ `Deploy to Cloudflare Pages` success（部署 `936ba162`，production），但 `Site verification` **failure**：`scripts/check-guide-review.mjs` 断言「改了 `src/components/*.astro` 就必须在同一 commit 更新 `docs/guide-reviews/{slug}.md`」。本地 `npm run check` 跑在 commit 之前（比对的 `HEAD^ HEAD` 还不含组件改动），故本地绿、CI 红。
+- `151e8f4`「docs(guide-reviews): record 2026-11-03 technical SEO follow-up…」为 egg-freezing-cost / ivf-cost / saipan-baby-us-citizenship 三份审阅各追加 `## 2026-11-03 technical SEO follow-up`（只记录 head/meta 层修正，声明可见正文、价格与医疗/法律表述未动）→ `Site verification` **success**、`Deploy to Cloudflare Pages` **success**（部署 `838e11b1.saipanivf-9ej.pages.dev`，production，`created_on` 晚于 push）、`Production guide smoke test` success。
+
+**线上复验**（`_analysis_tmp/sipan-online-check2.mjs`，走 `curl --resolve` 固定 CF 边缘 IP，绕开本机路由器旧 NS 缓存）：
+- 17 个抽样页全 **200**；`title` 宽 23–61（≤62）、`description` 宽 130–152；`canonical` = `https://www.ivfsaipan.com` + 路径带尾斜杠；`/zh-hant/` `lang=zh-TW`；`og:image:width=1200`（指南页封面声明值与真实文件尺寸一致）。
+- `hreflang`：旧 `zh-Hant` = 0、`zh-TW` = 2、`x-default` = 1，首页共 17 个 alternate；twitter 三项、og 五项、`og:image:width/height/alt` 齐；JSON-LD `WebSite,WebPage`；首页 `pages.dev` 残留 0。
+- `/robots.txt` 200（`Sitemap: https://www.ivfsaipan.com/sitemap.xml`）、`/llms.txt` 200、`/sitemap.xml` 200（`<loc>=197`，非本站 0、缺尾斜杠 0、`xhtml:link` 1698）；`/_headers`、`/_redirects`、`/sitemap-index.xml` 404 属预期（前两个是配置文件、不对外作为页面，且项目自带 sitemap 而非 @astrojs/sitemap）；而 `_headers` 声明的 `Cache-Control` 值在线上一字不差地生效，说明 Pages 确实读了该文件（`_redirects` 同理会被读，只是裸域根本没绑到 Pages，所以由 zone 规则接手）。
+- `/api/engagement` 200 `{"configured":false}` ⇒ 证明 Direct Upload 确实打包了根目录 `functions/`；D1 按用户决定**未绑定**，此状态为预期。
+- 缓存：`/_astro/*` 31536000 immutable、`/images/*` 2592000、`/favicon.svg` 14400。跳转：apex http/https → 301 `https://www.ivfsaipan.com`（路径与 query 保留）、www http → 301 https、无尾斜杠 → 308 → 带斜杠 200、随机路径 404 且 `noindex`。
+
+**待办 / 已知项**：① `strict-transport-security` 与 `content-security-policy` 线上缺失（`public/_headers` 本就未写），是否加固待定；② 三个自带 `<head>` 的指南模板硬编码拉丁品牌后缀 `| Saipan IVF` / `og:site_name`，与主站中文页 `· 塞班生殖中心` 不统一；③ Google Search Console 提交 `https://www.ivfsaipan.com/sitemap.xml` 与 IndexNow 需人工执行；④ GA 代码待提供；⑤ 第三账号下的旧 `saipanivf.pages.dev` 仍在（canonical 已指向 www，无重复内容风险），可选清理。

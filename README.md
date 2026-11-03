@@ -22,7 +22,7 @@ Edit `src/pages` and shared components; do not edit generated `dist` files. All 
 
 The Astro site URL, canonical links, sharing URLs, JSON-LD, Traditional Chinese generation, sitemap and robots use the same origin configuration. Do not switch to an unconfigured domain. After a domain change, run `SITE_ORIGIN=https://your-domain.example npm run verify` and inspect the deployed sitemap and redirects.
 
-`public/_redirects` sends the apex host `https://ivfsaipan.com/*` to `https://www.ivfsaipan.com/:splat` with a 301. It only takes effect once the apex hostname is attached to the same Cloudflare Pages project and DNS resolves it; `www.ivfsaipan.com` must be the project primary hostname so Cloudflare does not add another hop.
+The apex host is not attached to the Pages project. `https://ivfsaipan.com/*` reaches `https://www.ivfsaipan.com/:splat` with a 301 through a Cloudflare zone `http_request_dynamic_redirect` rule plus a proxied apex A record; `www.ivfsaipan.com` is the only custom hostname on the project, so Cloudflare adds no extra hop. Binding the apex to Pages instead would let `public/_redirects` do the same job, but it also makes the Pages hostname-activation check depend on that redirect, so the zone rule is the shipped mechanism. `/_redirects` and `/_headers` themselves return 404 because they are configuration, not published pages; the `Cache-Control` values they declare are visible in live responses, which confirms the file is honored. If the zone rules are ever replaced, re-check the apex 301 before publishing.
 
 ## Consultation and evidence
 
