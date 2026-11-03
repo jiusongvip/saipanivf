@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import assert from 'node:assert/strict';
 import {parse} from 'parse5';
+const origin=(process.env.SITE_ORIGIN||'https://www.ivfsaipan.com').replace(/\/$/,'');
 const locales=['','zh-hant/','en/','ja/','ko/','es/','de/','fr/'];
 const attr=(n,k)=>n.attrs?.find(a=>a.name===k)?.value;
 const nodes=n=>[n,...(n.childNodes||[]).flatMap(nodes)];
@@ -36,7 +37,7 @@ for(const prefix of locales){
   const all=nodes(parse(fs.readFileSync(`dist/${prefix}treatments/${slug}/index.html`,'utf8')));
   const aside=all.find(n=>hasClass(n,'treatment-aside'));
   const link=nodes(aside).find(n=>n.tagName==='a'&&hasClass(n,'button'));
-  const target=new URL(attr(link,'href'),'https://saipanivf.pages.dev');
+  const target=new URL(attr(link,'href'),origin);
   assert.equal(target.pathname,`/${prefix}contact/`);
   assert.equal(target.searchParams.get('topic'),slug,prefix+slug+' must pass a stable project code');
  }
@@ -51,7 +52,7 @@ const {default:vm}=await import('node:vm');
 const switchCode=nodes(parse(fs.readFileSync('dist/contact/index.html','utf8'))).find(n=>n.tagName==='script'&&text(n).includes('.language-switcher'));
 assert.ok(switchCode,'Language switch code present');
 for(const requested of ['egg-freezing','冻卵与生育力保存','凍卵與生育力保存','unrecognised']){
- const anchors=locales.map(prefix=>{let href=`https://saipanivf.pages.dev/${prefix}contact/`;return {get href(){return href},set href(value){href=new URL(value,'https://saipanivf.pages.dev').href}}});
+ const anchors=locales.map(prefix=>{let href=`${origin}/${prefix}contact/`;return {get href(){return href},set href(value){href=new URL(value,origin).href}}});
  const listeners={};const switcher={querySelectorAll:()=>anchors,addEventListener(){},contains(){return false}};
  vm.runInNewContext(text(switchCode),{URL,URLSearchParams,window:{location:{pathname:'/contact/',search:'?topic='+encodeURIComponent(requested)+'&email=private@example.com'}},document:{querySelectorAll:()=>[switcher],addEventListener(type,fn){listeners[type]=fn}}});
  for(const link of anchors){const url=new URL(link.href);assert.equal(url.searchParams.get('topic'),requested==='unrecognised'?null:'egg-freezing');assert.ok(!url.searchParams.has('email'));}

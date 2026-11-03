@@ -18,9 +18,11 @@ Edit `src/pages` and shared components; do not edit generated `dist` files. All 
 - Framework: Astro
 - Build: `npm run build`
 - Output: `dist`
-- Optional `SITE_ORIGIN`: the final HTTPS site origin, without path or query; defaults to `https://saipanivf.pages.dev`.
+- Optional `SITE_ORIGIN`: the final HTTPS site origin, without path or query; defaults to `https://www.ivfsaipan.com`.
 
 The Astro site URL, canonical links, sharing URLs, JSON-LD, Traditional Chinese generation, sitemap and robots use the same origin configuration. Do not switch to an unconfigured domain. After a domain change, run `SITE_ORIGIN=https://your-domain.example npm run verify` and inspect the deployed sitemap and redirects.
+
+`public/_redirects` sends the apex host `https://ivfsaipan.com/*` to `https://www.ivfsaipan.com/:splat` with a 301. It only takes effect once the apex hostname is attached to the same Cloudflare Pages project and DNS resolves it; `www.ivfsaipan.com` must be the project primary hostname so Cloudflare does not add another hop.
 
 ## Consultation and evidence
 

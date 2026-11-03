@@ -3,7 +3,7 @@ import path from 'node:path';
 import vm from 'node:vm';
 import assert from 'node:assert/strict';
 import {parse} from 'parse5';
-const origin=(process.env.SITE_ORIGIN||'https://saipanivf.pages.dev').replace(/\/$/,'');
+const origin=(process.env.SITE_ORIGIN||'https://www.ivfsaipan.com').replace(/\/$/,'');
 function nodes(tree){return [tree,...(tree.childNodes||[]).flatMap(nodes)]}
 function attr(node,name){return node.attrs?.find(a=>a.name===name)?.value}
 const base=[];function find(dir){for(const entry of fs.readdirSync(dir,{withFileTypes:true})){if(entry.isDirectory()&&!['en','ja','ko','es','de','fr','zh-hant','images','_astro'].includes(entry.name))find(path.join(dir,entry.name));if(entry.isFile()&&entry.name==='index.html')base.push(path.relative('dist',path.join(dir,entry.name)).split(path.sep).join('/'))}}find('dist');
@@ -23,7 +23,7 @@ for(const [prefix,lang] of [['','zh-CN'],['zh-hant/','zh-TW']]) {
 }
 for(const prefix of ['en','ja','ko','es','de','fr'])assert(!fs.existsSync('dist/'+prefix+'/guides/embryo-transfer-aftercare/index.html'),'Undeclared aftercare translation: '+prefix);
 for(const p of standalone) assert(base.includes(p),`Missing standalone guide: ${p}`);
-for(const [prefix,lang] of [['','zh-CN'],['en/','en'],['zh-hant/','zh-Hant']]){const name='dist/'+prefix+'guides/saipan-baby-us-citizenship/index.html';assert(fs.existsSync(name),'Missing citizenship guide locale: '+name);const tree=parse(fs.readFileSync(name,'utf8'));assert.equal(attr(nodes(tree).find(n=>n.tagName==='html'),'lang'),lang,name);const links=nodes(tree).filter(n=>n.tagName==='link'&&attr(n,'rel')==='alternate');assert.equal(links.length,4,name);}
+for(const [prefix,lang] of [['','zh-CN'],['en/','en'],['zh-hant/','zh-TW']]){const name='dist/'+prefix+'guides/saipan-baby-us-citizenship/index.html';assert(fs.existsSync(name),'Missing citizenship guide locale: '+name);const tree=parse(fs.readFileSync(name,'utf8'));assert.equal(attr(nodes(tree).find(n=>n.tagName==='html'),'lang'),lang,name);const links=nodes(tree).filter(n=>n.tagName==='link'&&attr(n,'rel')==='alternate');assert.equal(links.length,4,name);}
 const sharedPages=base.filter(p=>!standalone.includes(p));
 assert.equal(sharedPages.length,23);
 const languages=[['','zh-CN'],['zh-hant','zh-TW'],['en','en'],['ja','ja'],['ko','ko'],['es','es'],['de','de'],['fr','fr']];

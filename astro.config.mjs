@@ -3,4 +3,4 @@ import { defineConfig } from "astro/config";
 
 import traditional from "./src/integrations/traditional.mjs";
 
-export default defineConfig({ site: siteOrigin, output: "static", integrations: [traditional()] });
+export default defineConfig({ site: siteOrigin, output: "static", trailingSlash: "always", integrations: [traditional()] });

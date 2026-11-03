@@ -3,7 +3,7 @@ from html.parser import HTMLParser
 from urllib.parse import urlparse
 import json, os, xml.etree.ElementTree as ET
 
-ORIGIN=os.environ.get('SITE_ORIGIN','https://saipanivf.pages.dev').rstrip('/')
+ORIGIN=os.environ.get('SITE_ORIGIN','https://www.ivfsaipan.com').rstrip('/')
 class Head(HTMLParser):
  def __init__(self):
   super().__init__();self.meta={};self.canonical=None;self.ld=[];self.in_ld=False;self.buf='';self.images=[];self.alternate_locales=[]

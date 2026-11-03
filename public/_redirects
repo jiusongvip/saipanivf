@@ -1,0 +1,3 @@
+# Canonical host: the apex is never served, so send it to www with a 301.
+# Requires ivfsaipan.com to be attached to this Pages project with DNS resolving.
+https://ivfsaipan.com/*   https://www.ivfsaipan.com/:splat   301
