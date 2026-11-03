@@ -29,3 +29,8 @@ Reviewer: Codex focused editorial and rendered-page review; not a clinical profe
 
 ## Verification
 See customer-copy-results.json for the 195-page visible-text audit and actual browser measurements of the changed guides. Screenshots were inspected in the working session. Full npm run verify must pass before publishing this correction. CI and live deployment are reported separately.
+
+## 2026-11-03 technical SEO follow-up
+Head/meta-only correction shipped with the Cloudflare Pages deployment (commit d110c41, live on https://www.ivfsaipan.com). In `EggFreezingCostGuide.astro` the document `lang` and the Traditional alternate `hreflang` now carry `zh-TW` instead of `zh-Hant`; `og:image:width`, `og:image:height` and `og:image:alt` were declared and re-checked against the served cover file; `og:locale:alternate` was completed; the meta description was rebalanced into the 130–160 half-width band; canonical and `og:url` resolve to the `www` origin through `src/data/origin.mjs`.
+Visible body copy, layout, heading structure, budget figures and source links are unchanged — no medical or price claim was introduced. The rows above (including `Technical SEO: Equal`) sign off the 2026-10-28 release; this follow-up records a later metadata correction against the same release, not a fresh editorial or clinical certification.
+Evidence: `npm run build` and the full `npm run check` gate pass locally, and a live re-audit of 17 sampled production URLs returned 200 with title width ≤62, description width 130–152, trailing-slash canonicals on `www`, `hreflang zh-TW` ×2 plus `x-default`, and a sitemap of 197 on-domain `<loc>` entries.
