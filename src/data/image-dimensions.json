@@ -326,5 +326,17 @@
   "/images/stock/leaves-green.webp": [
     667,
     1000
+  ],
+  "/images/official/gary-profile.webp": [
+    270,
+    360
+  ],
+  "/images/official/irena-profile.webp": [
+    250,
+    333
+  ],
+  "/images/official/rose-profile.webp": [
+    250,
+    333
   ]
 }

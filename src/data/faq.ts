@@ -40,16 +40,16 @@ export const faqs = [
     "question": "你们是医院吗？",
     "answer": "本站提供中文咨询和就诊协调，医疗检查与治疗由接诊机构负责。",
     "detail": "预约前可以确认这几件事：接诊机构、主诊医生、医疗费收款方和协调服务的范围。诊断、处方、取卵、胚胎培养与移植由接诊医疗团队实施；医疗费和协调费应分别查看协议与明细。",
-    "sourceLabel": "接诊机构官网",
-    "source": "https://www.saipan-ivf.com/"
+    "sourceLabel": "预约与服务范围",
+    "source": "/service-scope/"
   },
   {
     "id": "available-treatments",
     "question": "可以咨询哪些生育项目？",
     "answer": "可以了解IVF、ICSI、冻卵、冻精、供卵、供精及第三方辅助生殖。",
     "detail": "这些项目列于院方公开服务介绍。已有胚胎的移植、单身或LGBTQ+家庭的生育计划也可先说明需求。项目介绍不代表所有方案都适用于每一位来访者，初诊时需要确认医疗条件、样本或资源、文件要求和等待时间。",
-    "sourceLabel": "院方公开服务介绍",
-    "source": "https://www.saipan-ivf.com/"
+    "sourceLabel": "治疗项目介绍",
+    "source": "/treatments/"
   },
   {
     "id": "ivf-budget",

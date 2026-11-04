@@ -79,5 +79,8 @@
   "/images/official/gary.webp": "/images/responsive/gary-400.webp 400w, /images/official/gary.webp 480w",
   "/images/official/rose.webp": "/images/official/rose.webp 250w",
   "/images/official/irena.webp": "/images/official/irena.webp 250w",
-  "/images/official/center.webp": "/images/responsive/center-400.webp 400w, /images/responsive/center-800.webp 800w, /images/official/center.webp 870w"
+  "/images/official/center.webp": "/images/responsive/center-400.webp 400w, /images/responsive/center-800.webp 800w, /images/official/center.webp 870w",
+  "/images/official/gary-profile.webp": "/images/official/gary-profile.webp 270w",
+  "/images/official/irena-profile.webp": "/images/official/irena-profile.webp 250w",
+  "/images/official/rose-profile.webp": "/images/official/rose-profile.webp 250w"
 }

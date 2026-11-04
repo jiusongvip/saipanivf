@@ -1,0 +1,120 @@
+---
+import SiteLayout from "../../layouts/SiteLayout.astro";
+import ResponsiveImage from "../../components/ResponsiveImage.astro";
+import SourceNote from "../../components/SourceNote.astro";
+import RangeBars from "../../components/guide/RangeBars.astro";
+import {pricing} from "../../data/pricing";
+
+const title = "做试管婴儿一定要做 PGT-A 吗？";
+const description = "不一定。下面讲清楚 PGT-A 能做到什么、什么情况值得考虑、报告怎么看，以及在塞班做要多花多少钱、多跑几趟。";
+const asrm = "https://www.asrm.org/practice-guidance/practice-committee-documents/the-use-of-preimplantation-genetic-testing-for-aneuploidy-a-committee-opinion-2024/";
+const hfea = "https://www.hfea.gov.uk/treatments/treatment-add-ons/pre-implantation-genetic-testing-for-aneuploidy-pgt-a";
+const trial = "https://pubmed.ncbi.nlm.nih.gov/34818479/";
+const acog = "https://www.acog.org/clinical/clinical-guidance/committee-opinion/articles/2020/03/preimplantation-genetic-testing";
+const p = (id: string) => pricing.find(x => x.id === id)!;
+const pgt = p("pgt"), freeze = p("freeze"), storage = p("storage"), fet = p("fet");
+const num = (n: number) => n.toLocaleString("en-US");
+const linkedLow = pgt.min + freeze.min + storage.min + fet.min, linkedHigh = pgt.max + freeze.max + storage.max + fet.max;
+const costBars = [
+  {label: "PGT-A 检测", min: pgt.min, max: pgt.max, emphasis: true, note: "按每枚胚胎还是按一次收，各家不同"},
+  {label: "胚胎冷冻", min: freeze.min},
+  {label: "第一年冷冻保存", min: storage.min},
+  {label: "之后的冻胚移植", min: fet.min, note: "移植用药另算"},
+  {label: "再来一趟塞班的机票（1 人）", min: 450, max: 1000, note: "2026 年 10 月比价"}
+];
+const sources = [
+  {name: "美国生殖医学会（ASRM）· PGT-A 委员会意见（2024）", url: asrm},
+  {name: "英国人类受精与胚胎学管理局（HFEA）· PGT-A 患者指南", url: hfea},
+  {name: "Yan 等 · 2021 年随机对照试验，NEJM", url: trial},
+  {name: "美国妇产科医师学会（ACOG）· 第 799 号委员会意见（2020）", url: acog}
+];
+---
+<SiteLayout title={title} description={description} active="guides" plainHead={true} zhOnlyAlternates={true}>
+  <article class="section wrap guide">
+    <p class="byline">Saipan IVF 网站内容团队 · 更新于 2026-11-02 · <a href="/editorial-policy/">编辑与来源</a></p>
+    <section class="case intro">
+      <div><h2>它能做到什么，做不到什么</h2>
+      <p>PGT-A 是在移植前，从胚胎上取几个细胞，查染色体有没有多或少。做了它，流产会少一些；但对大多数做试管婴儿的人来说，研究没有发现它能让最后生下孩子的人变多。</p>
+      <p>所以它不是那种“做了更保险”的项目。年龄偏大、囊胚比较多，或者以前流产过，可以和医生认真谈一谈；只有一两枚囊胚的人，更要先想清楚：检查结果会不会改变你的决定。</p></div>
+      <figure><ResponsiveImage src="/images/stock/legacy-notebook-yellow.webp" alt="摊开的笔记本和计算器" sizes="(max-width: 650px) 100vw, 240px"/></figure>
+    </section>
+    <nav aria-label="文章目录"><a href="#situations">你的情况</a><a href="#outcomes">研究怎么说</a><a href="#results">看懂报告</a><a href="#cost">费用和行程</a><a href="#consult">签字前问清楚</a></nav>
+    <section id="situations">
+      <h2>你更接近哪一种情况？</h2>
+      <details open><summary>只有一枚囊胚</summary><p>只有一枚，就不存在“先移植哪一枚”的问题。这时检查真正影响的，是这枚胚胎还移不移植：如果报告显示异常，或者写着“嵌合”，你可能就不移植它了。决定查不查之前，先想想自己能不能接受这样的结果。</p></details>
+      <details><summary>有好几枚囊胚</summary><p>这时 PGT-A 主要是帮你排顺序，先移植检查正常的那一枚，少经历一次流产的可能。不过前面说过，它没有让最后生下孩子的人变多。如果你特别在意少跑几趟、少做几次移植，可以把这一点告诉医生，一起权衡。</p></details>
+      <details><summary>年龄偏大，或者以前流产过</summary><p>这是讨论最多的一类人。美国生殖医学会认为，年龄较大、卵巢储备还不错的人可能会受益，但还没有可靠的研究证实；英国的监管机构也认为，这部分人的证据还不够。把取卵时的年龄、以前怀孕的经过和这次有几枚囊胚告诉医生，请他结合你的情况讲讲理由。</p></details>
+      <details><summary>家里有人患遗传病</summary><p>PGT-A 只查染色体的数目，查不出某一种具体的遗传病。如果家里有人确诊了遗传病，手上也有基因检测报告，你要了解的是另一项检查，叫 PGT-M。最好先请遗传咨询医生看看那份报告。</p></details>
+      <small>依据：<a href={asrm}>美国生殖医学会 2024 年意见</a>、<a href={hfea}>英国 HFEA 患者说明</a>。</small>
+    </section>
+    <section id="outcomes">
+      <h2>“成功率更高”是怎么算出来的？</h2>
+      <p>你可能会听到“做了 PGT-A，移植成功率更高”。这话不一定错，但它通常只算真正走到移植那一步的人。检查完没有正常胚胎、根本没能移植的人，不在这个数字里。</p>
+      <p>对你来说，更有用的问题是：取一次卵，最后生下孩子的机会有多大。目前回答这个问题最直接的，是 2021 年中国的一项研究。研究找了 1,212 位 20–37 岁、已经有至少 3 枚优质囊胚的女性，随机分成两组，跟踪一年，每人最多移植三次。</p>
+      <table><caption>一年后，两组各发生了什么</caption><thead><tr><th scope="col">结果</th><th scope="col">做了 PGT-A（606 人）</th><th scope="col">没做（606 人）</th></tr></thead>
+      <tbody><tr><th scope="row">生下孩子</th><td>468 人（77.2%）</td><td>496 人（81.8%）</td></tr><tr><th scope="row">怀孕后没能保住</th><td>8.7%</td><td>12.6%</td></tr></tbody></table>
+      <p>做检查的那组，流产少一些，但生下孩子的人并没有更多。还要注意，这些人都有 3 枚以上的好囊胚。如果你只有一两枚，这个结果不能直接拿来估算自己的机会。<a href={trial}>研究原文</a></p>
+      <p>美国生殖医学会 2024 年的意见也是一样：不建议每个做试管婴儿的人都常规加做 PGT-A。<a href={asrm}>原文</a></p>
+    </section>
+    <section id="results">
+      <h2>报告上会出现哪几种结果？</h2>
+      <p>实验室一般从囊胚外层取几个细胞去查，所以报告反映的是这几个细胞的情况，不一定代表整枚胚胎。<a href={hfea}>HFEA 的说明</a></p>
+      <details open><summary>整倍体（euploid）</summary><p>取到的细胞里，染色体数目正常。通常会优先移植这类胚胎，但它不保证一定能着床，也不能排除所有遗传病。</p></details>
+      <details><summary>非整倍体（aneuploid）</summary><p>染色体有多或少，一般不会移植。具体是哪条染色体、这枚胚胎之后怎么处理，可以请医生对着报告讲清楚。</p></details>
+      <details><summary>嵌合（mosaic）</summary><p>取到的细胞里，有的正常、有的不正常。这类胚胎着床的机会可能低一些，但也有移植后生下健康孩子的例子。能不能移植，各家诊所做法不一样，最好请遗传咨询医生看过你的报告再定。</p></details>
+      <details><summary>无结果（no result）</summary><p>这次没查出结论，可能要重新取样。重新取样意味着胚胎要再解冻、再取一次细胞、再冷冻，对胚胎有一定影响，费用也要另算。</p></details>
+      <p class="note"><strong>怀孕以后，产前检查照样做。</strong>PGT-A 只是筛查，代替不了孕期的唐氏筛查或羊水穿刺。美国妇产科医师学会（ACOG）建议，做过 PGT-A 的孕妇，和其他孕妇一样做这些检查。<a href={acog}>ACOG 2020 年意见</a></p>
+    </section>
+    <section id="cost">
+      <h2>在塞班做，要多花多少钱、多跑几趟？</h2>
+      <p>除了检测费，还有几笔连带的花费：等报告的这段时间，胚胎要先冷冻；报告出来后，再另外安排一次冻胚移植。从外地来塞班的话，多半要再来一趟。</p>
+      <RangeBars title="选择 PGT-A 后会发生的费用（美元）" prefix="US$" items={costBars} scaleMax={6000} caption="条形按同一比例画。数字是本站做预算用的估算，不是诊所报价，以诊所书面报价为准。"/>
+      <p>前四项加起来大约 <strong>US${num(linkedLow)}–{num(linkedHigh)}</strong>，还没算移植用的药和住宿。也要说句公道话：就算不做 PGT-A，多出来的胚胎也可能冷冻保存，所以这些钱不全是“因为做检查才多出来的”。想知道自己实际多花多少，最直接的办法是请诊所把做和不做分别报价。自己先估一估，可以用<a href="/fees/">费用预算工具</a>。</p>
+    </section>
+    <section id="consult" class="case">
+      <h2>签字前，把这几件事问清楚</h2>
+      <p>报价单上如果只写了一行“PGT-A 检测费”，很难看出里面包含什么。下面这几件事，建议当面问清楚，并请诊所写进报价单，回去才好比较。</p>
+      <table><caption>可以打印出来带去</caption><thead><tr><th scope="col">要问的事</th><th scope="col">具体问什么</th></tr></thead><tbody>
+      <tr><th scope="row">做和不做</th><td>两种情况下，接下来的移植怎么安排？</td></tr>
+      <tr><th scope="row">怎么收费</th><td>按每枚胚胎收，还是按这一次收？取样、送检、冷冻、解读报告各多少，哪些已经算在 IVF 报价里？</td></tr>
+      <tr><th scope="row">嵌合或没结果</th><td>报告看不懂找谁解释？要重新取样的话，风险和费用怎么算？</td></tr>
+      <tr><th scope="row">报告和行程</th><td>大概哪天出报告？那时我可能已经回家了，谁来联系我？下次来塞班的时间什么时候能定？</td></tr>
+      </tbody></table>
+      <label for="pgt-notes"><strong>记下诊所的回答</strong></label>
+      <textarea id="pgt-notes" rows="5" aria-describedby="notes-hint">做和不做，移植怎么安排：
+两种方案的报价和有效期：
+哪天出报告，谁联系我：
+还没问清的：</textarea>
+      <small id="notes-hint">写完可以复制到手机备忘录。页面不会保存你写的内容。</small>
+      <p>想先看懂胚胎培养报告，可以读<a href="/guides/embryo-lab-report/">取卵后怎么看胚胎实验室报告</a>；拿到报价后，可以对照<a href="/guides/quotation/">IVF 报价核对</a>逐项看。有问题想直接问我们，可以<a href="/contact/">填写咨询表</a>。</p>
+    </section>
+    <SourceNote checked="2026-11-02" sources={sources}/>
+  </article>
+</SiteLayout>
+<style>
+  .intro {display:grid; grid-template-columns:minmax(0,1fr) minmax(0,210px); gap:24px; align-items:center}
+  figure {margin:0} figure :global(img) {display:block;width:100%;height:150px;object-fit:cover;border-radius:8px}
+    label,textarea,#notes-hint {display:block;margin-block:12px}
+  textarea {width:100%;box-sizing:border-box;min-height:9em;resize:vertical;padding:12px;font:inherit;color:inherit;border:1px solid #879fae;border-radius:6px}
+  @media(max-width:650px){.intro {grid-template-columns:1fr;gap:8px} .intro figure {display:none}}
+  @media print {nav,figure {display:none} details::details-content {display:block} textarea {border-color:#333}}
+  .guide {max-width: 820px; padding-block: 24px 64px}
+  section {margin-block: 30px}
+  .case {background: #f1f6f7; padding: clamp(16px,4vw,28px); border-radius: 12px}
+  h2 {font-size: clamp(22px,3vw,30px); line-height: 1.35}
+  p,li,td,th {line-height: 1.75}
+  .byline,small,caption {color: #476478; font-size: 14px}
+  nav {display: flex; flex-wrap: wrap; gap: 8px 18px}
+  nav a,summary {padding-block: 12px}
+  table {border-collapse: collapse; width: 100%}
+  th,td {text-align: left; vertical-align: top; padding: 10px 8px; border-bottom: 1px solid #ccdbe0}
+  th:first-child {width: 37%}
+  caption {text-align: left; margin-bottom: 8px}
+  summary {cursor: pointer; font-weight: 650}
+  details {border-bottom: 1px solid #dbe5ea}
+  li {margin-bottom: 10px}
+  .note {border-left: 3px solid #739eae; padding-left: 14px; margin-top: 18px}
+  .intro p {margin: 0 0 10px}
+  .guide p a, .guide small a, .byline a {text-decoration: underline; text-underline-offset: 3px}
+  td,th {font-variant-numeric: tabular-nums}
+</style>

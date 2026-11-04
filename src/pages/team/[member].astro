@@ -1,0 +1,95 @@
+---
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import SourceNote from '../../components/SourceNote.astro';
+import ResponsiveImage from '../../components/ResponsiveImage.astro';
+import { team, teamProfiles } from '../../data/team';
+export function getStaticPaths(){return team.map(person=>({params:{member:person.id},props:{person}}))}
+const { person } = Astro.props;
+const p = teamProfiles[person.id];
+const others = team.filter(other => other.id !== person.id);
+const parts = (text: string) => text.split(/(\[[^\]]+\]\([^)]+\))/).filter(Boolean).map(seg => { const m = seg.match(/^\[([^\]]+)\]\(([^)]+)\)$/); return m ? { t: m[1], href: m[2] } : { t: seg }; });
+const plain = (text: string) => text.replace(/\[([^\]]+)\]\([^)]+\)/g, '$1');
+---
+<SiteLayout title={person.name} description={p.description} active="team" plainHead={true} zhOnlyAlternates={true}>
+<article class="section wrap member-page" aria-label={p.title}>
+<header class="member-hero">
+ <ResponsiveImage class="member-photo" src={`/images/official/${person.image}-profile.webp`} alt={`${person.name}，${person.role}`} sizes="(max-width: 650px) 150px, 210px" fetchpriority="high"/>
+ <div class="member-intro">
+  <p class="member-role">{person.role} · Saipan IVF Center · 塞班 Garapan</p>
+  <h2>{p.title}</h2>
+  <p>{person.summary}</p>
+  <ul class="member-tags" aria-label="专业方向">{p.tags.map(tag=><li>{tag}</li>)}</ul>
+  <div class="member-actions"><a class="button" href={'/contact/'}>预约咨询</a><a class="inline-link" href="#questions">初诊可以问什么</a></div>
+ </div>
+</header>
+<section id="highlights" class="member-why"><h2>{p.whyTitle}</h2><p class="member-why-lead">{p.whyLead}</p><ol class:list={["member-highlights",{"member-highlights-4":p.highlights.length===4}]}>{p.highlights.map(([title,text])=><li><h3>{title}</h3><p>{text}</p></li>)}</ol></section>
+<nav class="member-jump" aria-label="本页导航"><a href="#about">个人介绍</a><a href="#scope">负责范围</a><a href="#education">教育与资质</a>{p.timeline&&<a href="#timeline">职业经历</a>}<a href="#questions">咨询问题</a><a href="#summary">资料速览</a></nav>
+
+<section id="about"><h2>个人介绍</h2>{p.bio.map(text=><p>{parts(text).map(x=>x.href?<a class="member-link" href={x.href}>{x.t}</a>:x.t)}</p>)}</section>
+<section id="scope"><h2>可以咨询的方向</h2><div class="member-cards">{p.scope.map(([title,text])=><article><h3>{title}</h3><p>{parts(text).map(x=>x.href?<a class="member-link" href={x.href}>{x.t}</a>:x.t)}</p></article>)}</div>
+<h3 class="member-sub">适合先找这个方向咨询的情况</h3><ul class="member-list">{p.fit.map(item=><li>{parts(item).map(x=>x.href?<a class="member-link" href={x.href}>{x.t}</a>:x.t)}</li>)}</ul></section>
+<section id="education"><h2>教育背景与资质</h2><dl class="member-facts">{p.education.map(([label,value])=><div><dt>{label}</dt><dd>{value}</dd></div>)}</dl></section>
+{p.timeline&&<section id="timeline"><h2>职业经历</h2><ol class="member-timeline">{p.timeline.map(([year,text])=><li><span>{year}</span><p>{text}</p></li>)}</ol></section>}
+<section id="questions"><h2>初诊时可以问</h2><ul class="member-list">{p.questions.map(item=><li>{item}</li>)}</ul></section>
+<section id="summary" aria-labelledby="member-summary-title"><h2 id="member-summary-title">资料速览</h2><dl class="member-chips">
+<div><dt>适合咨询的人群</dt><dd><ul>{p.fit.map(item=><li>{plain(item).replace(/（参考 .*）$/,'')}</li>)}</ul></dd></div>
+<div><dt>专业方向</dt><dd><ul>{p.tags.map(item=><li>{item}</li>)}</ul></dd></div>
+{p.education.some(([label])=>!label.includes('执照')&&label!=='职务')&&<div><dt>教育背景</dt><dd><ul>{p.education.filter(([label])=>!label.includes('执照')&&label!=='职务').map(([label,value])=><li>{label}：{value}</li>)}</ul></dd></div>}
+</dl></section>
+<section class="member-clinic" aria-labelledby="member-clinic-title"><h2 id="member-clinic-title">所在机构</h2><p><strong>Saipan IVF Center</strong> · 3rd Floor, Bank of Guam, Garapan, Saipan, MP 96950</p><p>接诊机构位于美国北马里亚纳群岛塞班岛的 Garapan 区。院方公开设施介绍列有显微操作系统、MIRI® IVF 培养箱与卵子玻璃化冷冻；初诊可先询问是否支持视频咨询、需要提前提交的资料和预约时间。</p><div class="member-actions"><a class="button" href="/contact/">免费提交初步咨询</a><a class="inline-link" href="/facility/">查看诊所环境与实验室</a></div></section>
+<section class="member-others" aria-labelledby="member-others-title"><h2 id="member-others-title">团队其他成员</h2><div class="hub-grid">{others.map(other=><a class="hub-card" href={'/team/'+other.id+'/'}><h3>{other.name}</h3><p>{other.role} · {other.summary}</p></a>)}</div><a class="inline-link" href="/team/">查看全部医疗团队</a></section>
+<div class="member-cta"><h2>预约与{person.name}相关的初诊咨询</h2><p>先留下一种联系方式，说明治疗需求和已有检查，我们会尽快回复。</p><div class="member-actions"><a class="button" href="/contact/">提交初步咨询</a><a class="inline-link" href="/team/">浏览更多团队成员</a></div></div>
+{p.sources&&<SourceNote checked="2026-11-03" sources={p.sources}/>}
+</article>
+</SiteLayout>
+<style>
+.member-page{max-width:1000px;padding-top:22px;padding-bottom:65px}
+.member-page section{scroll-margin-top:24px;margin-top:48px}
+.member-page h2{font-size:clamp(23px,3vw,32px);line-height:1.45;margin:0 0 14px}
+.member-page p,.member-page li,.member-page dd{line-height:1.85}
+.member-hero{display:grid;grid-template-columns:210px minmax(0,1fr);gap:36px;align-items:start;padding:28px;background:#f5fafb;border:1px solid #d9e7eb;border-radius:16px}
+.member-hero :global(.member-photo){width:210px;height:auto;aspect-ratio:3/4;object-fit:cover;border-radius:12px;background:#eef3f5}
+.member-role{font-size:14px;color:var(--muted);margin:0 0 6px}
+.member-intro h2{margin-bottom:10px}
+.member-tags{display:flex;flex-wrap:wrap;gap:8px;list-style:none;padding:0;margin:16px 0}
+.member-tags li{font-size:14px;padding:4px 12px;border:1px solid #c9dbe2;border-radius:999px;background:#fff;line-height:1.6}
+.member-actions{display:flex;flex-wrap:wrap;align-items:center;gap:14px 24px;margin-top:8px}
+.member-jump{display:flex;flex-wrap:wrap;gap:10px 22px;margin:22px 0 0}
+.member-jump a{display:inline-flex;align-items:center;min-height:44px;font-size:15px;text-decoration:underline;text-underline-offset:5px}
+.member-why{margin-top:32px}
+.member-highlights.member-highlights-4{grid-template-columns:repeat(2,minmax(0,1fr))}
+.member-why-lead{font-size:17px;max-width:46em}
+.member-highlights{counter-reset:h;list-style:none;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px}
+.member-highlights li{counter-increment:h;padding:20px;background:var(--light);min-width:0}
+.member-highlights li::before{content:counter(h,decimal-leading-zero);display:block;font-size:14px;color:var(--muted);margin-bottom:6px}
+.member-highlights h3,.member-cards h3{font-size:19px;margin:0 0 6px}
+.member-highlights p,.member-cards p{margin:0;font-size:16px}
+.member-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.member-cards article{padding:20px;background:var(--light);min-width:0}
+.member-sub{font-size:20px;margin:30px 0 8px}
+.member-list{padding-left:22px}.member-list li{margin-bottom:8px}
+.member-facts{margin:0;display:grid;gap:0}
+.member-facts div{display:grid;grid-template-columns:200px minmax(0,1fr);gap:20px;padding:14px 0;border-bottom:1px solid #dde7ea}
+.member-facts dt{font-weight:600}.member-facts dd{margin:0}
+.member-timeline{list-style:none;padding:0;margin:0;border-left:2px solid #c9dbe2}
+.member-timeline li{position:relative;padding:0 0 18px 24px}
+.member-timeline li::before{content:"";position:absolute;left:-7px;top:9px;width:12px;height:12px;border-radius:50%;background:var(--blue,#1d5c8f)}
+.member-timeline span{font-weight:600;font-size:15px}
+.member-timeline p{margin:2px 0 0}
+.member-link{color:inherit;text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1px;text-decoration-color:#7fa3b8}
+.member-link:hover{color:var(--blue,#1d5c8f)}
+.member-note{font-size:14px;color:var(--muted);margin-top:14px}
+.member-clinic{padding:28px;background:var(--light)}
+.member-chips{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin:0}
+.member-chips div{padding:18px 20px;border:1px solid #dde7ea;min-width:0}
+.member-chips dt{font-weight:600;margin-bottom:10px}
+.member-chips dd{margin:0}
+.member-chips ul{display:flex;flex-wrap:wrap;gap:8px;list-style:none;padding:0;margin:0}
+.member-chips li{font-size:14px;line-height:1.6;padding:4px 12px;border-radius:999px;background:var(--light)}
+.member-cta{margin-top:48px;padding:28px;background:#f5fafb;border:1px solid #d9e7eb;border-radius:16px}
+.member-cta h2{font-size:clamp(22px,2.6vw,28px)}
+.member-others .hub-grid{gap:18px 40px;margin:16px 0 18px}
+.member-others .hub-card{padding:18px 20px;border:1px solid #dde7ea;min-width:0}
+.member-others .hub-card h3{margin:0 0 6px;font-size:21px}.member-others .hub-card p{margin:0;font-size:15px}
+@media(max-width:650px){.member-hero{grid-template-columns:1fr;gap:20px;padding:22px}.member-hero :global(.member-photo){width:150px}.member-highlights.member-highlights-4{grid-template-columns:1fr}.member-highlights,.member-cards{grid-template-columns:1fr}.member-facts div{grid-template-columns:1fr;gap:4px}.member-clinic{padding:22px}.member-chips{grid-template-columns:1fr}.member-cta{padding:22px}.member-others .hub-grid{grid-template-columns:1fr}}
+</style>

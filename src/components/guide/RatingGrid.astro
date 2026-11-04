@@ -1,0 +1,33 @@
+---
+// Evidence-rating cards (e.g. HFEA traffic lights). Each rating shows a shape + word,
+// never color alone. rating: 'green' | 'amber' | 'red' | 'grey'.
+interface Item { outcome: string; group: string; rating: 'green'|'amber'|'red'|'grey'; verdict: string; note?: string }
+interface Props { title: string; items: Item[]; source?: string; sourceHref?: string; legend?: Record<string, string> }
+const { title, items, source, sourceHref, legend = { green: '有高质量证据支持', amber: '证据有冲突', red: '未显示有效', grey: '证据不足' } } = Astro.props;
+const mark = { green: '●', amber: '◆', red: '■', grey: '○' };
+const used = [...new Set(items.map(i => i.rating))];
+---
+<figure class="g-rating">
+ <figcaption class="g-title">{title}</figcaption>
+ <div class="g-grid">
+  {items.map(i => <article class={`r-${i.rating}`}>
+   <p class="g-badge"><span aria-hidden="true">{mark[i.rating]}</span> {i.verdict}</p>
+   <h3>{i.outcome}</h3><p class="g-group">{i.group}</p>
+   {i.note && <p class="g-note">{i.note}</p>}
+  </article>)}
+ </div>
+ <p class="g-legend">{used.map(r => <span class={`r-${r}`}><b aria-hidden="true">{mark[r]}</b> {legend[r]}</span>)}{source && <span class="g-src">来源：{sourceHref ? <a href={sourceHref}>{source}</a> : source}</span>}</p>
+</figure>
+<style>
+.g-rating{margin:20px 0}.g-title{font-weight:700;color:#1f2d36;margin-bottom:12px;font-size:15px}
+.g-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px}
+article{border:1px solid #dce6ec;border-top-width:4px;border-radius:12px;padding:14px 16px;background:#fff}
+h3{font-size:17px;margin:6px 0 2px;line-height:1.4}.g-group{margin:0;font-size:13px;color:#55697a}.g-note{margin:8px 0 0;font-size:14px;line-height:1.6;color:#3a4d59}
+.g-badge{margin:0;font-size:13px;font-weight:700;display:inline-flex;gap:6px;align-items:center;padding:3px 10px;border-radius:99px}
+.r-green{border-top-color:#2f7d4f}.r-green .g-badge{background:#e6f3ea;color:#1f5e39}
+.r-amber{border-top-color:#b7791f}.r-amber .g-badge{background:#fbf1de;color:#7a5010}
+.r-red{border-top-color:#b4433a}.r-red .g-badge{background:#f8e6e4;color:#8a2b24}
+.r-grey{border-top-color:#8a9aa6}.r-grey .g-badge{background:#eef1f3;color:#43535e}
+.g-legend{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:12px;color:#55697a;margin:10px 0 0}.g-legend b{font-weight:400}
+.g-legend .r-green b{color:#2f7d4f}.g-legend .r-amber b{color:#b7791f}.g-legend .r-red b{color:#b4433a}.g-legend .r-grey b{color:#8a9aa6}.g-src a{color:#1767a6}
+</style>

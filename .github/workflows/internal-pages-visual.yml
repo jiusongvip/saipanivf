@@ -1,0 +1,68 @@
+name: Internal pages visual review
+on:
+  pull_request:
+    paths:
+      - 'src/components/ServicePage.astro'
+      - 'src/data/provider-services.ts'
+      - 'src/pages/fertility-preservation.astro'
+      - 'src/pages/egg-donation.astro'
+      - 'src/pages/third-party-reproduction.astro'
+      - 'src/pages/facility.astro'
+      - 'src/pages/team/**'
+      - 'src/data/team.ts'
+      - 'public/images/official/**'
+      - 'src/components/ClinicArrival.astro'
+      - 'src/components/EggFreezingCostGuide.astro'
+      - '.github/workflows/internal-pages-visual.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  screenshot:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci && npm run build
+      - run: npx --yes playwright@1.56.1 install --with-deps chromium
+      - name: Capture desktop and mobile screenshots
+        run: |
+          set -eu
+          mkdir -p internal-review-images
+          python3 -m http.server 4321 --directory dist > /tmp/preview.log 2>&1 &
+          sleep 3
+          shot() { npx --yes playwright@1.56.1 screenshot --browser chromium --viewport-size="$2" --full-page "http://127.0.0.1:4321$1" "internal-review-images/$3.png"; }
+          for page in fertility-preservation egg-donation third-party-reproduction facility; do
+            shot "/$page/" "390,844" "zh-cn-$page-mobile"
+            shot "/$page/" "1440,900" "zh-cn-$page-desktop"
+            shot "/zh-hant/$page/" "390,844" "zh-hant-$page-mobile"
+          done
+          shot "/guides/travel-checklist/" "390,844" "zh-cn-travel-checklist-mobile"
+          shot "/zh-hant/guides/travel-checklist/" "390,844" "zh-hant-travel-checklist-mobile"
+          shot "/en/guides/travel-checklist/" "390,844" "en-travel-checklist-mobile"
+          shot "/guides/egg-freezing-cost/" "390,844" "zh-cn-egg-freezing-cost-mobile"
+          shot "/zh-hant/guides/egg-freezing-cost/" "390,844" "zh-hant-egg-freezing-cost-mobile"
+          shot "/treatments/" "1440,900" "zh-cn-treatments-desktop"
+          shot "/team/" "390,844" "zh-cn-team-mobile"
+          for m in gary-ramsey irena-lalic rose-wang; do
+            shot "/team/$m/" "390,844" "zh-cn-team-$m-mobile"
+            shot "/team/$m/" "1440,900" "zh-cn-team-$m-desktop"
+            shot "/zh-hant/team/$m/" "390,844" "zh-hant-team-$m-mobile"
+          done
+      - name: Publish screenshots to a review branch
+        if: github.event_name == 'workflow_dispatch' || github.event.pull_request.head.repo.full_name == github.repository
+        run: |
+          set -eu
+          cd internal-review-images
+          git init -q && git checkout -q -b internal-pages-review-shots
+          git -c user.name=ci -c user.email=ci@users.noreply.github.com add . && git -c user.name=ci -c user.email=ci@users.noreply.github.com commit -q -m "screenshots ${GITHUB_SHA}"
+          git push -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}" internal-pages-review-shots
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: internal-pages-visual-review
+          path: internal-review-images/

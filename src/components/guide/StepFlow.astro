@@ -1,0 +1,17 @@
+---
+// Numbered process with optional Health Icons. Collapses to a vertical list on mobile.
+import Icon from './Icon.astro';
+interface Step { title: string; text: string; icon?: string }
+interface Props { label: string; steps: Step[] }
+const { label, steps } = Astro.props;
+---
+<ol class="g-flow" aria-label={label} style={`--n:${steps.length}`}>
+ {steps.map((s, i) => <li>{s.icon && <Icon name={s.icon} size={34} class="g-flow-icon" />}<span class="g-step">{i + 1}</span><b>{s.title}</b><span class="g-text">{s.text}</span></li>)}
+</ol>
+<style>
+.g-flow{list-style:none;padding:0;margin:22px 0 10px;display:grid;grid-template-columns:repeat(var(--n),minmax(0,1fr));gap:10px}
+li{position:relative;margin:0;padding:14px;border:1px solid #dce6ec;border-top:3px solid #1767a6;border-radius:0 0 12px 12px;background:#fff;display:flex;flex-direction:column;gap:4px}
+li :global(.g-flow-icon){color:#1767a6;margin-bottom:4px}.g-step{font-size:12px;font-weight:750;color:#1767a6;letter-spacing:.06em}
+b{color:#1f2d36;font-size:15px;line-height:1.4}.g-text{font-size:14px;line-height:1.6;color:#3a4d59}
+@media(max-width:900px){.g-flow{grid-template-columns:1fr 1fr}}@media(max-width:600px){.g-flow{grid-template-columns:1fr}li{display:grid;grid-template-columns:40px 1fr;column-gap:12px}li :global(.g-flow-icon){grid-row:1 / span 3}.g-step,b,.g-text{grid-column:2}}
+</style>

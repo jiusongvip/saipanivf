@@ -1,0 +1,47 @@
+[
+  {
+    "name": "outline-microscope",
+    "src": "src/assets/icons/outline-microscope.svg",
+    "kind": "health-icon",
+    "aiGenerated": false,
+    "source": "https://github.com/resolvetosavelives/healthicons@8e8eca6b95821101bac1fde69531d8baffa68fbe public/icons/svg/outline/devices/microscope.svg",
+    "license": "CC0 1.0",
+    "created": "2026-10-29"
+  },
+  {
+    "name": "outline-test-tubes",
+    "src": "src/assets/icons/outline-test-tubes.svg",
+    "kind": "health-icon",
+    "aiGenerated": false,
+    "source": "https://github.com/resolvetosavelives/healthicons@8e8eca6b95821101bac1fde69531d8baffa68fbe public/icons/svg/outline/devices/test-tubes.svg",
+    "license": "CC0 1.0",
+    "created": "2026-10-29"
+  },
+  {
+    "name": "outline-dna",
+    "src": "src/assets/icons/outline-dna.svg",
+    "kind": "health-icon",
+    "aiGenerated": false,
+    "source": "https://github.com/resolvetosavelives/healthicons@8e8eca6b95821101bac1fde69531d8baffa68fbe public/icons/svg/outline/body/dna.svg",
+    "license": "CC0 1.0",
+    "created": "2026-10-29"
+  },
+  {
+    "name": "outline-lab-search",
+    "src": "src/assets/icons/outline-lab-search.svg",
+    "kind": "health-icon",
+    "aiGenerated": false,
+    "source": "https://github.com/resolvetosavelives/healthicons@8e8eca6b95821101bac1fde69531d8baffa68fbe public/icons/svg/outline/symbols/lab-search.svg",
+    "license": "CC0 1.0",
+    "created": "2026-10-29"
+  },
+  {
+    "name": "outline-small-plane",
+    "src": "src/assets/icons/outline-small-plane.svg",
+    "kind": "health-icon",
+    "aiGenerated": false,
+    "source": "https://github.com/resolvetosavelives/healthicons@8e8eca6b95821101bac1fde69531d8baffa68fbe public/icons/svg/outline/vehicles/small-plane.svg",
+    "license": "CC0 1.0",
+    "created": "2026-10-29"
+  }
+]

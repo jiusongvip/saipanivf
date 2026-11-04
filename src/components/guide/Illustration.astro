@@ -1,0 +1,17 @@
+---
+// Editorial illustration (Open Peeps scene or hand-built SVG) from public/images/illustrations.
+// Dimensions and alt text come from docs/illustrations.json so the ledger stays the source of truth.
+import ledger from '../../../docs/illustrations.json';
+interface Props { name: string; caption?: string; maxWidth?: number; align?: 'left'|'center' }
+const { name, caption, maxWidth = 420, align = 'center' } = Astro.props;
+const item = (ledger as any[]).find(i => i.name === name && i.kind === 'open-peeps' || i.name === name && i.kind === 'svg');
+if (!item) throw new Error(`Illustration not in docs/illustrations.json: ${name}`);
+---
+<figure class:list={['g-illus', `a-${align}`]} style={`--max:${maxWidth}px`}>
+ <img src={item.src} alt={item.alt} width={item.width} height={item.height} loading="lazy" decoding="async"/>
+ {caption && <figcaption>{caption}</figcaption>}
+</figure>
+<style>
+.g-illus{margin:22px 0;max-width:var(--max)}.a-center{margin-left:auto;margin-right:auto}
+img{display:block;width:100%;height:auto}figcaption{font-size:13px;color:#476478;text-align:center;margin-top:8px;line-height:1.6}
+</style>

@@ -85,6 +85,12 @@ Provide a compact, auditable record:
 
 **If review does not clear the gates, revise the page rather than declaring it complete.** Do not claim every future AI-written page is automatically better merely because the skill exists.
 
+## Visual companion skills (in this repo)
+- `saipan-guide-tables` — tables, range/budget bars, evidence ratings, step flows (shared components in `src/components/guide/`).
+- `saipan-guide-illustrations` — Open Peeps / Health Icons (CC0) and hand-built SVG, provenance in `docs/illustrations.json`. Never AI-generated people.
+- `saipan-guide-photos` — import photos supplied by the hospital with rights/consent recorded (no stock-site sourcing for now).
+Each new guide should have at least one visual that explains (table, chart, flow or diagram), not only a decorative cover.
+
 ## Optional reference skills
 - inhouseseo/superseo-skills: content-brief, improve-content, eeat-audit, semantic-gap-analysis
 - Leonxlnx/taste-skill: redesign-existing-projects, minimalist-ui

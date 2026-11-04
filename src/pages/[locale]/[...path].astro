@@ -30,7 +30,7 @@ const {locale,key}=Astro.props;const d=dictionaries[locale],page=pageInfo(locale
 const guidePaths: Record<string,string[]>={'guides/first-visit':['treatments','team','process'],'guides/ivf-steps':['treatments/ivf','fees','process'],'guides/quotation':['fees','process','service-scope'],'guides/egg-freezing':['treatments/egg-freezing','fees','process'],'guides/travel-checklist':['process','guides/first-visit','service-scope'],'guides/family-planning':['treatments','fees','service-scope']};
 const consultationTopic=key==='guides/egg-freezing'?'egg-freezing':key==='guides/ivf-steps'?'ivf':'';
 const links=guidePaths[key]??(key==='guides'?['guides/first-visit','guides/ivf-steps','guides/quotation','guides/egg-freezing','guides/travel-checklist','guides/family-planning']:key==='process'?['guides/first-visit','fees','guides/travel-checklist','service-scope']:key==='birth-planning'?['faq','guides/family-planning','contact']:['treatments','fees','process','guides/first-visit']);
-const source=key==='team'?'https://www.saipan-ivf.com/Resources/':key==='birth-planning'?'https://fam.state.gov/FAM/08FAM/08FAM030202.html':key==='guides/ivf-steps'||key==='process'?'https://www.nhs.uk/tests-and-treatments/ivf/':key==='guides/egg-freezing'?'https://www.hfea.gov.uk/treatments/fertility-preservation/egg-freezing/':'https://www.saipan-ivf.com/';
+const source=key==='team'?href('about'):key==='birth-planning'?'https://fam.state.gov/FAM/08FAM/08FAM030202.html':key==='guides/ivf-steps'||key==='process'?'https://www.nhs.uk/tests-and-treatments/ivf/':key==='guides/egg-freezing'?'https://www.hfea.gov.uk/treatments/fertility-preservation/egg-freezing/':href('editorial-policy');
 const faqReferences=faqs.map((item,i)=>({...item,source:['ja','ko'].includes(locale)&&i===3?'https://travel.state.gov/content/travel/en/us-visas/tourism-visit/visa-waiver-program.html':locale==='fr'?frenchFaqSource(i,item.source):locale==='de'?germanFaqSource(i,item.source):locale==='es'?spanishFaqSource(i,item.source):item.source,additionalSources:locale==='fr'&&i===3?frenchTravelReferences:['es','de','ja','ko'].includes(locale)&&i===3?item.additionalSources?.slice(1):item.additionalSources}));
 const localizedPageSources=locale==='fr'?frenchPageSources:locale==='de'?germanPageSources:spanishPageSources;
 const profileIds=['gary-ramsey','irena-lalic','rose-wang'];
@@ -47,7 +47,7 @@ const profileIds=['gary-ramsey','irena-lalic','rose-wang'];
 {['fees','treatments','process','birth-planning'].includes(key)&&<LocalizedIllustrations locale={locale} page={key}/>}
 
 {['es','de','fr'].includes(locale)&&localizedPageSources[key]&&<section class="localized-section"><h2>{locale==='fr'?'Sources officielles pour ces démarches':locale==='de'?'Behördliche Quellen und weiterführende Hinweise':'Fuentes oficiales para estos trámites'}</h2><ul>{localizedPageSources[key].map(item=><li><a class="inline-link" href={item.url} target="_blank" rel="noopener">{item.label}</a></li>)}</ul></section>}
-{!treatment&&key!=='faq'&&<p class="source-link"><a class="inline-link" href={source} target="_blank" rel="noopener">{d.source}</a></p>}
+{!treatment&&key!=='faq'&&<p class="source-link"><a class="inline-link" href={source} target={source.startsWith('/')?undefined:'_blank'} rel={source.startsWith('/')?undefined:'noopener'}>{d.source}</a></p>}
 {key==='treatments'&&<OutcomeEvidence locale={locale}/>}
 {key==='guides/quotation'&&<QuotationChecklist locale={locale}/>}
 {key==='privacy'&&<EngagementNotice locale={locale}/>}

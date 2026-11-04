@@ -1,0 +1,802 @@
+{
+ "pose/sitting/bike.svg": {
+  "x": 534.0,
+  "y": 0.0,
+  "w": 1534,
+  "h": 1856,
+  "minx": -600.0,
+  "maxx": 2128.0,
+  "miny": 0.0,
+  "maxy": 2452.0
+ },
+ "pose/sitting/closed_legs-1.svg": {
+  "x": 555.6,
+  "y": -32.0,
+  "w": 1534,
+  "h": 1856,
+  "minx": 176.0,
+  "maxx": 1520.0,
+  "miny": -32.0,
+  "maxy": 1544.0
+ },
+ "pose/sitting/closed_legs-2.svg": {
+  "x": 555.6,
+  "y": -32.0,
+  "w": 1534,
+  "h": 1856,
+  "minx": 176.0,
+  "maxx": 1520.0,
+  "miny": -32.0,
+  "maxy": 1544.0
+ },
+ "pose/sitting/crossed_legs.svg": {
+  "x": 572.7,
+  "y": 0.0,
+  "w": 1534,
+  "h": 1856,
+  "minx": 276.0,
+  "maxx": 1692.0,
+  "miny": 0.0,
+  "maxy": 1852.0
+ },
+ "pose/sitting/hands_back-1.svg": {
+  "x": 573.1,
+  "y": -48.0,
+  "w": 1534,
+  "h": 1856,
+  "minx": 76.0,
+  "maxx": 1328.0,
+  "miny": -48.0,
+  "maxy": 1400.0
+ },
+ "pose/sitting/hands_back-2.svg": {
+  "x": 573.1,
+  "y": -48.0,
+  "w": 1534,
+  "h": 1856,
+  "minx": 76.0,
+  "maxx": 1328.0,
+  "miny": -48.0,
+  "maxy": 1400.0
+ },
+ "pose/sitting/mid-1.svg": {
+  "x": 485.5,
+  "y": -64.0,
+  "w": 1534,
+  "h": 1856,
+  "minx": -116.0,
+  "maxx": 1204.0,
+  "miny": -64.0,
+  "maxy": 1428.0
+ },
+ "pose/sitting/mid-2.svg": {
+  "x": 496.9,
+  "y": -64.0,
+  "w": 1534,
+  "h": 1856,
+  "minx": -116.0,
+  "maxx": 1204.0,
+  "miny": -64.0,
+  "maxy": 1428.0
+ },
+ "pose/sitting/one_leg_up-1.svg": {
+  "x": 554.7,
+  "y": -48.0,
+  "w": 1534,
+  "h": 1856,
+  "minx": 100.0,
+  "maxx": 1404.0,
+  "miny": -48.0,
+  "maxy": 1520.0
+ },
+ "pose/sitting/one_leg_up-2.svg": {
+  "x": 554.7,
+  "y": -48.0,
+  "w": 1534,
+  "h": 1856,
+  "minx": 100.0,
+  "maxx": 1400.0,
+  "miny": -48.0,
+  "maxy": 1520.0
+ },
+ "pose/sitting/wheelchair.svg": {
+  "x": 572.9,
+  "y": -24.0,
+  "w": 1534,
+  "h": 1856,
+  "minx": 4.0,
+  "maxx": 1800.0,
+  "miny": -24.0,
+  "maxy": 1952.0
+ },
+ "pose/standing/blazer-1.svg": {
+  "x": 695.3,
+  "y": -20.0,
+  "w": 1645,
+  "h": 2500,
+  "minx": 200.0,
+  "maxx": 1244.0,
+  "miny": -20.0,
+  "maxy": 2408.0
+ },
+ "pose/standing/blazer-2.svg": {
+  "x": 684.4,
+  "y": -20.0,
+  "w": 1645,
+  "h": 2500,
+  "minx": 200.0,
+  "maxx": 1244.0,
+  "miny": -20.0,
+  "maxy": 2408.0
+ },
+ "pose/standing/blazer-3.svg": {
+  "x": 681.3,
+  "y": -24.0,
+  "w": 1645,
+  "h": 2500,
+  "minx": 200.0,
+  "maxx": 1244.0,
+  "miny": -24.0,
+  "maxy": 2404.0
+ },
+ "pose/standing/blazer-4.svg": {
+  "x": 684.4,
+  "y": -24.0,
+  "w": 1645,
+  "h": 2500,
+  "minx": 200.0,
+  "maxx": 1244.0,
+  "miny": -24.0,
+  "maxy": 2408.0
+ },
+ "pose/standing/crossed_arms-1.svg": {
+  "x": 684.0,
+  "y": 8.0,
+  "w": 1645,
+  "h": 2500,
+  "minx": 100.0,
+  "maxx": 1168.0,
+  "miny": 8.0,
+  "maxy": 2468.0
+ },
+ "pose/standing/crossed_arms-2.svg": {
+  "x": 693.7,
+  "y": -32.0,
+  "w": 1645,
+  "h": 2500,
+  "minx": 100.0,
+  "maxx": 1188.0,
+  "miny": -32.0,
+  "maxy": 2432.0
+ },
+ "pose/standing/easing-1.svg": {
+  "x": 664.3,
+  "y": 8.0,
+  "w": 1645,
+  "h": 2500,
+  "minx": 84.0,
+  "maxx": 1156.0,
+  "miny": 8.0,
+  "maxy": 2468.0
+ },
+ "pose/standing/easing-2.svg": {
+  "x": 664.3,
+  "y": 8.0,
+  "w": 1645,
+  "h": 2500,
+  "minx": 84.0,
+  "maxx": 1156.0,
+  "miny": 8.0,
+  "maxy": 2468.0
+ },
+ "pose/standing/pointing_finger-1.svg": {
+  "x": 731.8,
+  "y": 4.0,
+  "w": 1645,
+  "h": 2500,
+  "minx": 260.0,
+  "maxx": 1556.0,
+  "miny": 4.0,
+  "maxy": 2192.0
+ },
+ "pose/standing/pointing_finger-2.svg": {
+  "x": 731.8,
+  "y": 4.0,
+  "w": 1645,
+  "h": 2500,
+  "minx": 260.0,
+  "maxx": 1556.0,
+  "miny": 4.0,
+  "maxy": 2192.0
+ },
+ "pose/standing/polka_dots.svg": {
+  "x": 706.7,
+  "y": -4.0,
+  "w": 1645,
+  "h": 2500,
+  "minx": 312.0,
+  "maxx": 1136.0,
+  "miny": -4.0,
+  "maxy": 2416.0
+ },
+ "pose/standing/resting-1.svg": {
+  "x": 677.1,
+  "y": -20.0,
+  "w": 1645,
+  "h": 2500,
+  "minx": 292.0,
+  "maxx": 1560.0,
+  "miny": -20.0,
+  "maxy": 2444.0
+ },
+ "pose/standing/resting-2.svg": {
+  "x": 676.7,
+  "y": -20.0,
+  "w": 1645,
+  "h": 2500,
+  "minx": 292.0,
+  "maxx": 1560.0,
+  "miny": -20.0,
+  "maxy": 2448.0
+ },
+ "pose/standing/robot_dance-1.svg": {
+  "x": 689.1,
+  "y": 4.0,
+  "w": 1645,
+  "h": 2500,
+  "minx": 128.0,
+  "maxx": 1476.0,
+  "miny": 4.0,
+  "maxy": 2508.0
+ },
+ "pose/standing/robot_dance-2.svg": {
+  "x": 695.3,
+  "y": 4.0,
+  "w": 1645,
+  "h": 2500,
+  "minx": 128.0,
+  "maxx": 1476.0,
+  "miny": 4.0,
+  "maxy": 2504.0
+ },
+ "pose/standing/robot_dance-3.svg": {
+  "x": 695.3,
+  "y": 4.0,
+  "w": 1645,
+  "h": 2500,
+  "minx": 128.0,
+  "maxx": 1476.0,
+  "miny": 4.0,
+  "maxy": 2504.0
+ },
+ "pose/standing/shirt-1.svg": {
+  "x": 661.8,
+  "y": -12.0,
+  "w": 1645,
+  "h": 2500,
+  "minx": 320.0,
+  "maxx": 1212.0,
+  "miny": -12.0,
+  "maxy": 2512.0
+ },
+ "pose/standing/shirt-2.svg": {
+  "x": 661.8,
+  "y": -12.0,
+  "w": 1645,
+  "h": 2500,
+  "minx": 320.0,
+  "maxx": 1212.0,
+  "miny": -12.0,
+  "maxy": 2512.0
+ },
+ "pose/standing/shirt-3.svg": {
+  "x": 661.8,
+  "y": -12.0,
+  "w": 1645,
+  "h": 2500,
+  "minx": 320.0,
+  "maxx": 1208.0,
+  "miny": -12.0,
+  "maxy": 2512.0
+ },
+ "pose/standing/shirt-4.svg": {
+  "x": 661.8,
+  "y": -12.0,
+  "w": 1645,
+  "h": 2500,
+  "minx": 320.0,
+  "maxx": 1208.0,
+  "miny": -12.0,
+  "maxy": 2512.0
+ },
+ "pose/standing/walking-1.svg": {
+  "x": 693.8,
+  "y": -12.0,
+  "w": 1645,
+  "h": 2500,
+  "minx": 192.0,
+  "maxx": 1224.0,
+  "miny": -12.0,
+  "maxy": 2428.0
+ },
+ "pose/standing/walking-2.svg": {
+  "x": 693.8,
+  "y": -12.0,
+  "w": 1645,
+  "h": 2500,
+  "minx": 192.0,
+  "maxx": 1224.0,
+  "miny": -12.0,
+  "maxy": 2428.0
+ },
+ "pose/standing/walking-3.svg": {
+  "x": 693.8,
+  "y": -12.0,
+  "w": 1645,
+  "h": 2500,
+  "minx": 192.0,
+  "maxx": 1224.0,
+  "miny": -12.0,
+  "maxy": 2428.0
+ },
+ "head/Afro.svg": {
+  "x": 285.6,
+  "y": 508.0,
+  "w": 473,
+  "h": 567,
+  "minx": -32.0,
+  "maxx": 468.0,
+  "miny": 8.0,
+  "maxy": 508.0
+ },
+ "head/Bangs 2.svg": {
+  "x": 284.9,
+  "y": 500.0,
+  "w": 473,
+  "h": 567,
+  "minx": -24.0,
+  "maxx": 492.0,
+  "miny": 52.0,
+  "maxy": 500.0
+ },
+ "head/Bangs.svg": {
+  "x": 206.2,
+  "y": 508.0,
+  "w": 473,
+  "h": 567,
+  "minx": -44.0,
+  "maxx": 468.0,
+  "miny": 56.0,
+  "maxy": 508.0
+ },
+ "head/Bantu Knots.svg": {
+  "x": 288.5,
+  "y": 504.0,
+  "w": 473,
+  "h": 567,
+  "minx": 8.0,
+  "maxx": 420.0,
+  "miny": 4.0,
+  "maxy": 504.0
+ },
+ "head/Bear.svg": {
+  "x": 281.1,
+  "y": 504.0,
+  "w": 473,
+  "h": 567,
+  "minx": 8.0,
+  "maxx": 460.0,
+  "miny": 24.0,
+  "maxy": 504.0
+ },
+ "head/Bun 2.svg": {
+  "x": 280.5,
+  "y": 504.0,
+  "w": 473,
+  "h": 567,
+  "minx": -100.0,
+  "maxx": 440.0,
+  "miny": -96.0,
+  "maxy": 504.0
+ },
+ "head/Bun.svg": {
+  "x": 273.6,
+  "y": 504.0,
+  "w": 473,
+  "h": 567,
+  "minx": -32.0,
+  "maxx": 412.0,
+  "miny": -68.0,
+  "maxy": 504.0
+ },
+ "head/Buns.svg": {
+  "x": 296.2,
+  "y": 508.0,
+  "w": 473,
+  "h": 567,
+  "minx": -32.0,
+  "maxx": 464.0,
+  "miny": -28.0,
+  "maxy": 508.0
+ },
+ "head/Cornrows 2.svg": {
+  "x": 13.8,
+  "y": 576.0,
+  "w": 473,
+  "h": 567,
+  "minx": -48.0,
+  "maxx": 432.0,
+  "miny": 24.0,
+  "maxy": 576.0
+ },
+ "head/Cornrows.svg": {
+  "x": 70.6,
+  "y": 604.0,
+  "w": 473,
+  "h": 567,
+  "minx": -24.0,
+  "maxx": 428.0,
+  "miny": 28.0,
+  "maxy": 604.0
+ },
+ "head/Flat Top Long.svg": {
+  "x": 289.3,
+  "y": 504.0,
+  "w": 473,
+  "h": 567,
+  "minx": 56.0,
+  "maxx": 412.0,
+  "miny": -4.0,
+  "maxy": 504.0
+ },
+ "head/Flat Top.svg": {
+  "x": 291.1,
+  "y": 504.0,
+  "w": 473,
+  "h": 567,
+  "minx": 52.0,
+  "maxx": 424.0,
+  "miny": 44.0,
+  "maxy": 504.0
+ },
+ "head/Gray Bun.svg": {
+  "x": 284.7,
+  "y": 512.0,
+  "w": 473,
+  "h": 567,
+  "minx": -24.0,
+  "maxx": 428.0,
+  "miny": 8.0,
+  "maxy": 512.0
+ },
+ "head/Gray Medium.svg": {
+  "x": 276.5,
+  "y": 508.0,
+  "w": 473,
+  "h": 567,
+  "minx": -12.0,
+  "maxx": 432.0,
+  "miny": 56.0,
+  "maxy": 508.0
+ },
+ "head/Gray Short.svg": {
+  "x": 289.0,
+  "y": 512.0,
+  "w": 473,
+  "h": 567,
+  "minx": 40.0,
+  "maxx": 420.0,
+  "miny": 52.0,
+  "maxy": 512.0
+ },
+ "head/Hijab.svg": {
+  "x": 255.4,
+  "y": 660.0,
+  "w": 473,
+  "h": 567,
+  "minx": 4.0,
+  "maxx": 440.0,
+  "miny": 36.0,
+  "maxy": 660.0
+ },
+ "head/Long Afro.svg": {
+  "x": 240.4,
+  "y": 524.0,
+  "w": 473,
+  "h": 567,
+  "minx": -152.0,
+  "maxx": 580.0,
+  "miny": -120.0,
+  "maxy": 524.0
+ },
+ "head/Long Bangs.svg": {
+  "x": 160.9,
+  "y": 796.0,
+  "w": 473,
+  "h": 567,
+  "minx": -76.0,
+  "maxx": 464.0,
+  "miny": 48.0,
+  "maxy": 796.0
+ },
+ "head/Long Curly.svg": {
+  "x": 181.5,
+  "y": 544.0,
+  "w": 473,
+  "h": 567,
+  "minx": -112.0,
+  "maxx": 548.0,
+  "miny": -44.0,
+  "maxy": 544.0
+ },
+ "head/Long.svg": {
+  "x": 294.0,
+  "y": 696.0,
+  "w": 473,
+  "h": 567,
+  "minx": -84.0,
+  "maxx": 508.0,
+  "miny": 32.0,
+  "maxy": 696.0
+ },
+ "head/Medium 1.svg": {
+  "x": 225.4,
+  "y": 508.0,
+  "w": 473,
+  "h": 567,
+  "minx": 4.0,
+  "maxx": 432.0,
+  "miny": 56.0,
+  "maxy": 508.0
+ },
+ "head/Medium 2.svg": {
+  "x": 122.5,
+  "y": 536.0,
+  "w": 473,
+  "h": 567,
+  "minx": -76.0,
+  "maxx": 464.0,
+  "miny": 60.0,
+  "maxy": 536.0
+ },
+ "head/Medium 3.svg": {
+  "x": 84.6,
+  "y": 568.0,
+  "w": 473,
+  "h": 567,
+  "minx": -44.0,
+  "maxx": 424.0,
+  "miny": 60.0,
+  "maxy": 568.0
+ },
+ "head/Medium Bangs 2.svg": {
+  "x": 49.4,
+  "y": 528.0,
+  "w": 473,
+  "h": 567,
+  "minx": -56.0,
+  "maxx": 420.0,
+  "miny": 48.0,
+  "maxy": 528.0
+ },
+ "head/Medium Bangs 3.svg": {
+  "x": 118.8,
+  "y": 552.0,
+  "w": 473,
+  "h": 567,
+  "minx": -4.0,
+  "maxx": 448.0,
+  "miny": 16.0,
+  "maxy": 552.0
+ },
+ "head/Medium Bangs.svg": {
+  "x": 177.2,
+  "y": 536.0,
+  "w": 473,
+  "h": 567,
+  "minx": -104.0,
+  "maxx": 456.0,
+  "miny": 48.0,
+  "maxy": 536.0
+ },
+ "head/Medium Straight.svg": {
+  "x": 126.5,
+  "y": 540.0,
+  "w": 473,
+  "h": 567,
+  "minx": -8.0,
+  "maxx": 460.0,
+  "miny": 40.0,
+  "maxy": 540.0
+ },
+ "head/Mohawk 2.svg": {
+  "x": 294.9,
+  "y": 504.0,
+  "w": 473,
+  "h": 567,
+  "minx": 36.0,
+  "maxx": 432.0,
+  "miny": 0.0,
+  "maxy": 504.0
+ },
+ "head/Mohawk.svg": {
+  "x": 276.1,
+  "y": 500.0,
+  "w": 473,
+  "h": 567,
+  "minx": 40.0,
+  "maxx": 420.0,
+  "miny": -12.0,
+  "maxy": 500.0
+ },
+ "head/No Hair 1.svg": {
+  "x": 292.0,
+  "y": 500.0,
+  "w": 473,
+  "h": 567,
+  "minx": 44.0,
+  "maxx": 424.0,
+  "miny": 64.0,
+  "maxy": 500.0
+ },
+ "head/No Hair 2.svg": {
+  "x": 286.5,
+  "y": 500.0,
+  "w": 473,
+  "h": 567,
+  "minx": 48.0,
+  "maxx": 420.0,
+  "miny": 44.0,
+  "maxy": 500.0
+ },
+ "head/No Hair 3.svg": {
+  "x": 271.4,
+  "y": 500.0,
+  "w": 473,
+  "h": 567,
+  "minx": -20.0,
+  "maxx": 424.0,
+  "miny": 56.0,
+  "maxy": 500.0
+ },
+ "head/Pomp.svg": {
+  "x": 268.3,
+  "y": 500.0,
+  "w": 473,
+  "h": 567,
+  "minx": 36.0,
+  "maxx": 488.0,
+  "miny": 0.0,
+  "maxy": 500.0
+ },
+ "head/Shaved 1.svg": {
+  "x": 288.6,
+  "y": 512.0,
+  "w": 473,
+  "h": 567,
+  "minx": 56.0,
+  "maxx": 472.0,
+  "miny": 4.0,
+  "maxy": 512.0
+ },
+ "head/Shaved 2.svg": {
+  "x": 278.8,
+  "y": 500.0,
+  "w": 473,
+  "h": 567,
+  "minx": 44.0,
+  "maxx": 440.0,
+  "miny": -16.0,
+  "maxy": 500.0
+ },
+ "head/Shaved 3.svg": {
+  "x": 297.2,
+  "y": 512.0,
+  "w": 473,
+  "h": 567,
+  "minx": -8.0,
+  "maxx": 492.0,
+  "miny": -32.0,
+  "maxy": 512.0
+ },
+ "head/Short 1.svg": {
+  "x": 285.2,
+  "y": 504.0,
+  "w": 473,
+  "h": 567,
+  "minx": 52.0,
+  "maxx": 416.0,
+  "miny": 60.0,
+  "maxy": 504.0
+ },
+ "head/Short 2.svg": {
+  "x": 292.0,
+  "y": 520.0,
+  "w": 473,
+  "h": 567,
+  "minx": 44.0,
+  "maxx": 428.0,
+  "miny": 64.0,
+  "maxy": 520.0
+ },
+ "head/Short 3.svg": {
+  "x": 279.2,
+  "y": 504.0,
+  "w": 473,
+  "h": 567,
+  "minx": 12.0,
+  "maxx": 440.0,
+  "miny": 68.0,
+  "maxy": 504.0
+ },
+ "head/Short 4.svg": {
+  "x": 289.2,
+  "y": 520.0,
+  "w": 473,
+  "h": 567,
+  "minx": 56.0,
+  "maxx": 436.0,
+  "miny": 16.0,
+  "maxy": 520.0
+ },
+ "head/Short 5.svg": {
+  "x": 293.0,
+  "y": 512.0,
+  "w": 473,
+  "h": 567,
+  "minx": 48.0,
+  "maxx": 420.0,
+  "miny": 56.0,
+  "maxy": 512.0
+ },
+ "head/Turban.svg": {
+  "x": 286.3,
+  "y": 500.0,
+  "w": 473,
+  "h": 567,
+  "minx": 12.0,
+  "maxx": 464.0,
+  "miny": 0.0,
+  "maxy": 500.0
+ },
+ "head/Twists 2.svg": {
+  "x": 287.8,
+  "y": 500.0,
+  "w": 473,
+  "h": 567,
+  "minx": -8.0,
+  "maxx": 424.0,
+  "miny": 12.0,
+  "maxy": 500.0
+ },
+ "head/Twists.svg": {
+  "x": 287.8,
+  "y": 504.0,
+  "w": 473,
+  "h": 567,
+  "minx": 4.0,
+  "maxx": 432.0,
+  "miny": 0.0,
+  "maxy": 504.0
+ },
+ "head/hat-beanie.svg": {
+  "x": 297.5,
+  "y": 512.0,
+  "w": 473,
+  "h": 567,
+  "minx": -16.0,
+  "maxx": 420.0,
+  "miny": 52.0,
+  "maxy": 512.0
+ },
+ "head/hat-hip.svg": {
+  "x": 295.4,
+  "y": 512.0,
+  "w": 473,
+  "h": 567,
+  "minx": -64.0,
+  "maxx": 516.0,
+  "miny": 16.0,
+  "maxy": 512.0
+ }
+}

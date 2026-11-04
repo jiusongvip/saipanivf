@@ -1,0 +1,24 @@
+---
+// Accessible, mobile-scrollable comparison/data table for guides.
+// rows: first cell becomes the row header. numeric: column indexes to right-align and keep unbroken.
+interface Props { label: string; columns: string[]; rows: (string|number)[][]; numeric?: number[]; caption?: string; total?: boolean; minWidth?: number }
+const { label, columns, rows, numeric = [], caption, total = false, minWidth = 640 } = Astro.props;
+const cell = (v: string|number) => typeof v === 'number' ? v.toLocaleString('en-US') : v;
+---
+<figure class="g-table">
+ <p class="g-swipe" aria-hidden="true">在手机上可横向滑动表格。</p>
+ <div class="g-scroll" role="region" aria-label={label} tabindex="0">
+  <table style={`min-width:${minWidth}px`}>
+   <thead><tr>{columns.map(c => <th scope="col">{c}</th>)}</tr></thead>
+   <tbody>{rows.map((r, i) => <tr class:list={{ 'g-total': total && i === rows.length - 1 }}>{r.map((v, j) => j === 0 ? <th scope="row">{cell(v)}</th> : <td class:list={{ 'g-num': numeric.includes(j) }}>{cell(v)}</td>)}</tr>)}</tbody>
+  </table>
+ </div>
+ {caption && <figcaption>{caption}</figcaption>}
+</figure>
+<style>
+.g-table{margin:18px 0}.g-scroll{overflow-x:auto;border:1px solid #dce6ec;border-radius:12px;background:#fff}.g-scroll:focus-visible{outline:2px solid #1767a6;outline-offset:3px}
+table{border-collapse:collapse;width:100%;font-size:15px}th,td{padding:13px 16px;text-align:left;vertical-align:top;border-bottom:1px solid #e1eaf0;line-height:1.65}thead th{background:#f5f6f6;color:#24343e;font-size:14px}tbody tr:last-child>*{border-bottom:0}tbody th{width:22%;color:#1f2d36}
+.g-num{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}.g-total>*{font-weight:750;background:#f4f6f7}
+figcaption{font-size:13px;color:#476478;margin-top:8px;line-height:1.6}.g-swipe{display:none;font-size:13px;color:#476478;margin:0 0 6px}
+@media(max-width:700px){.g-swipe{display:block}th,td{padding:11px 12px;font-size:14px}}
+</style>

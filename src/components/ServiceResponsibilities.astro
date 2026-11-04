@@ -9,7 +9,7 @@ const href=(key)=>locale==='zh-CN'?'/'+key+'/':pageHref(locale,key);
 <h2 id="responsibilities-title">{c.title}</h2><p class="intro">{c.intro}</p>
 <div class="desktop-table"><table><caption class="sr-only">{c.title}</caption><thead><tr>{c.headers.map(h=><th scope="col">{h}</th>)}</tr></thead><tbody>{c.rows.map(row=><tr><th scope="row">{row[0]}</th>{row.slice(1).map(cell=><td>{cell}</td>)}</tr>)}</tbody></table></div>
 <div class="mobile-cards">{c.rows.map(row=><article><h3>{row[0]}</h3><dl>{row.slice(1).map((cell,i)=><div><dt>{c.headers[i+1]}</dt><dd>{cell}</dd></div>)}</dl></article>)}</div>
-<div class="details"><section class="documents"><h2>{c.docsTitle}</h2><ol>{c.docs.map(item=><li>{item}</li>)}</ol><a class="inline-link" href={href('fees')}>{c.fees}</a></section><div class="context"><section><h2>{c.noteTitle}</h2><p>{c.note}</p></section><section><h2>{c.sourceTitle}</h2><p>{c.source}</p><a class="inline-link" href="https://www.saipan-ivf.com/Resources/" target="_blank" rel="noopener">{c.sourceLink}</a><br/><a class="inline-link" href={href('about')}>{c.about}</a></section></div></div>
+<div class="details"><section class="documents"><h2>{c.docsTitle}</h2><ol>{c.docs.map(item=><li>{item}</li>)}</ol><a class="inline-link" href={href('fees')}>{c.fees}</a></section><div class="context"><section><h2>{c.noteTitle}</h2><p>{c.note}</p></section><section><h2>{c.sourceTitle}</h2><p>{c.source}</p><a class="inline-link" href={href('team')}>{c.sourceLink}</a><br/><a class="inline-link" href={href('about')}>{c.about}</a></section></div></div>
 <div class="next"><a class="button" href={href('contact')}>{c.contact}</a></div>
 </section>
 <style>
